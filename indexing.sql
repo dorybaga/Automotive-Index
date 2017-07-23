@@ -41,9 +41,6 @@ CREATE DATABASE indexed_cars WITH OWNER indexed_cars_user;
 -- WHERE year = 2010;
 -- -- time 36.454
 
-CREATE INDEX idx_make_codes ON car_models (make_code);
-CREATE INDEX idx_model_codes ON car_models (model_code);
-
 \timing
 
 SELECT DISTINCT make_title FROM car_models
