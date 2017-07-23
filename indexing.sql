@@ -19,30 +19,56 @@ CREATE DATABASE indexed_cars WITH OWNER indexed_cars_user;
 \i scripts/car_model_data.sql
 \i scripts/car_model_data.sql
 
+-- \timing
+
+-- SELECT DISTINCT make_title FROM car_models
+-- WHERE make_code = 'LAM';
+-- -- time: 37.227 ms
+
+-- SELECT DISTINCT model_title FROM car_models
+-- WHERE make_code = 'NISSAN' AND model_code = 'GT-R';
+-- -- time: 27.092 ms
+
+-- SELECT make_code, model_code, model_title, year FROM car_models
+-- WHERE make_code = 'LAM';
+-- -- time 27.049 ms
+
+-- SELECT * FROM car_models
+-- WHERE year BETWEEN 2010 AND 2015;
+-- -- time 77.553 ms
+
+-- SELECT * FROM car_models
+-- WHERE year = 2010;
+-- -- time 36.454
+
+CREATE INDEX idx_make_codes ON car_models (make_code);
+CREATE INDEX idx_model_codes ON car_models (model_code);
+
 \timing
 
 SELECT DISTINCT make_title FROM car_models
 WHERE make_code = 'LAM';
--- make_title: lamborghini
--- time: 25.426 ms
+-- initial time: 37.227 ms
+-- after idx: 1.841 ms
 
 SELECT DISTINCT model_title FROM car_models
 WHERE make_code = 'NISSAN' AND model_code = 'GT-R';
--- time: 21.771 ms
+-- initial time: 27.092 ms
+-- after idx: 0.827 ms
 
 SELECT make_code, model_code, model_title, year FROM car_models
 WHERE make_code = 'LAM';
--- time 28.476 ms
+-- initial time 27.049 ms
+-- after idx: 0.944 ms
 
 SELECT * FROM car_models
 WHERE year BETWEEN 2010 AND 2015;
--- time 64.186 ms
+-- initial time 77.553 ms
+-- after idx: 76.504 ms
 
 SELECT * FROM car_models
 WHERE year = 2010;
--- time 30.263
+-- time 36.454
+-- after idx: 41.662
 
-
-
-\timing
 \c dorybaga
