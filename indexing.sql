@@ -38,7 +38,9 @@ SELECT * FROM car_models
 WHERE year BETWEEN 2010 AND 2015;
 -- time 64.186 ms
 
-SELECT * FROM
+SELECT * FROM car_models
+WHERE year = 2010;
+-- time 30.263
 
 
 
