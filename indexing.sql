@@ -4,8 +4,6 @@ DROP USER IF EXISTS indexed_cars_user;
 CREATE USER indexed_cars_user;
 CREATE DATABASE indexed_cars WITH OWNER indexed_cars_user;
 
-\c indexed_cars
-
 \i scripts/car_models.sql
 
 \i scripts/car_model_data.sql
@@ -41,8 +39,6 @@ CREATE DATABASE indexed_cars WITH OWNER indexed_cars_user;
 -- WHERE year = 2010;
 -- -- time 36.454
 
-\timing
-
 SELECT DISTINCT make_title FROM car_models
 WHERE make_code = 'LAM';
 -- initial time: 37.227 ms
@@ -67,5 +63,3 @@ SELECT * FROM car_models
 WHERE year = 2010;
 -- time 36.454
 -- after idx: 41.662
-
-\c dorybaga
