@@ -21,5 +21,10 @@ CREATE DATABASE indexed_cars WITH OWNER indexed_cars_user;
 
 \timing
 
+SELECT DISTINCT make_title FROM car_models where make_code = 'LAM';
+-- make_title: lamborghini
+-- time: 34.411 ms
+
+
 
 \c dorybaga
