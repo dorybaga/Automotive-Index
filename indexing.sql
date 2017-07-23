@@ -34,7 +34,11 @@ SELECT make_code, model_code, model_title, year FROM car_models
 WHERE make_code = 'LAM';
 -- time 28.476 ms
 
+SELECT * FROM car_models
+WHERE year BETWEEN 2010 AND 2015;
+-- time 64.186 ms
 
+SELECT * FROM
 
 
 
